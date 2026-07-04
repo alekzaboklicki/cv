@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth;}
+body{margin:0;background:#F5F3EE;color:#14181D;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes heroLine{from{transform:translateY(108%);}to{transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){*{animation-duration:0.001ms !important;transition-duration:0.001ms !important;}}
+</style>
+</helmet>
+
+<!-- ===== PROGRESS BAR ===== -->
+<div id="scrollProgress" style="position:fixed;top:0;left:0;height:3px;width:0%;background:#5A7052;z-index:100;"></div>
+
+<!-- ===== NAV ===== -->
+<header style="position:sticky;top:0;z-index:90;background:rgba(245,243,238,0.92);backdrop-filter:blur(10px);border-bottom:1px solid #DCD8CD;">
+  <div style="max-width:1320px;margin:0 auto;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+    <a href="#top" style="text-decoration:none;color:inherit;display:flex;align-items:center;">
+      <img src="assets/logo.png" alt="Żaboklicki Aleksander" style="height:36px;width:auto;display:block;">
+    </a>
+    <nav style="display:flex;align-items:center;gap:26px;flex-wrap:wrap;" aria-label="Nawigacja">
+      <a href="#o-mnie" style="text-decoration:none;color:#14181D;font-weight:600;font-size:12.5px;letter-spacing:0.07em;" style-hover="color:#5A7052;">O MNIE</a>
+      <a href="#demo" style="text-decoration:none;color:#14181D;font-weight:600;font-size:12.5px;letter-spacing:0.07em;" style-hover="color:#5A7052;">TECHNIKA → KORZYŚĆ</a>
+      <a href="#dopasowanie" style="text-decoration:none;color:#14181D;font-weight:600;font-size:12.5px;letter-spacing:0.07em;" style-hover="color:#5A7052;">DOPASOWANIE</a>
+      <a href="#doswiadczenie" style="text-decoration:none;color:#14181D;font-weight:600;font-size:12.5px;letter-spacing:0.07em;" style-hover="color:#5A7052;">DOŚWIADCZENIE</a>
+      <a href="#kontakt" style="text-decoration:none;background:#1C3557;color:#fff;font-weight:600;font-size:12.5px;letter-spacing:0.07em;padding:10px 20px;border-radius:2px;" style-hover="background:#5A7052;">KONTAKT</a>
+    </nav>
+  </div>
+</header>
+
+<div id="top"></div>
+
+<!-- ===== HERO ===== -->
+<section data-screen-label="Hero" style="overflow:hidden;border-bottom:1px solid #DCD8CD;">
+  <div style="max-width:1320px;margin:0 auto;padding:64px 40px 0;position:relative;">
+    <p style="margin:0 0 18px;font-weight:600;font-size:13px;letter-spacing:0.14em;color:#5A7052;">PRODUCT / PRODUCT MARKETING — STOLARKA OTWOROWA I KOMUNIKACJA PRODUKTOWA</p>
+    <h1 style="margin:0;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(64px,10.5vw,152px);line-height:0.9;letter-spacing:-0.02em;color:#14181D;text-transform:uppercase;"><span style="display:block;overflow:hidden;padding-bottom:0.03em;"><span style="display:block;animation:heroLine 1s cubic-bezier(.2,.75,.2,1) both;">Aleksander</span></span><span style="display:block;overflow:hidden;padding-bottom:0.03em;"><span style="display:block;animation:heroLine 1s cubic-bezier(.2,.75,.2,1) .13s both;">Żaboklicki<span style="color:#5A7052;">.</span></span></span></h1>
+    <div style="display:grid;grid-template-columns:minmax(280px,1fr) 300px;gap:56px;align-items:center;padding:48px 0 72px;flex-wrap:wrap;">
+      <div>
+        <p style="margin:0 0 28px;font-size:18px;line-height:1.65;color:#4E5560;max-width:600px;"><strong style="color:#14181D;">Tłumaczę technologię na język korzyści — w praktyce, na sali i w slajdach.</strong> Branżę budowlaną i stolarkę otworową znam od środka: w&nbsp;PORTA KMI Poland przeszedłem drogę od sprzedaży okien i drzwi po odpowiedzialność za systemy ich konfiguracji i produkcji. Prowadzę prezentacje, szkolę zespoły i partnerów, a skomplikowane parametry zamieniam w argumenty, które sprzedają.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <button onClick="{{ callAction }}" style="cursor:pointer;font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:15px;padding:17px 32px;background:#1C3557;color:#fff;border:2px solid #1C3557;border-radius:2px;transition:background .2s ease,border-color .2s ease;" style-hover="background:#5A7052;border-color:#5A7052;">{{ callLabel }}</button>
+        </div>
+      </div>
+      <div style="position:relative;width:300px;height:300px;animation:floatY 7s ease-in-out infinite;">
+        <div style="position:absolute;inset:-16px;border:2px solid #1C3557;border-radius:50%;"></div>
+        <div style="position:absolute;inset:-16px;border-top:2px solid #5A7052;border-left:2px solid transparent;border-right:2px solid transparent;border-bottom:2px solid transparent;border-radius:50%;transform:rotate(40deg);"></div>
+        <div style="position:absolute;inset:0;border-radius:50%;overflow:hidden;background:#ECE9E1;">
+          <img src="assets/profile.jpg" alt="Aleksander Żaboklicki" style="width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS BAND ===== -->
+<section data-screen-label="Statystyki" style="border-bottom:1px solid #DCD8CD;background:#F5F3EE;">
+  <div style="max-width:1180px;margin:0 auto;padding:52px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:36px;">
+    <div data-reveal>
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:58px;line-height:1;color:#1C3557;"><span data-count="100">100</span><span style="color:#5A7052;font-size:36px;">+</span></span>
+      <p style="margin:10px 0 0;font-size:13.5px;color:#4E5560;font-weight:500;">klientów, z którymi pracowałem</p>
+    </div>
+    <div data-reveal>
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:58px;line-height:1;color:#1C3557;"><span data-count="40">40</span><span style="color:#5A7052;font-size:36px;">+</span></span>
+      <p style="margin:10px 0 0;font-size:13.5px;color:#4E5560;font-weight:500;">wdrożonych automatyzacji i systemów</p>
+    </div>
+    <div data-reveal>
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:58px;line-height:1;color:#1C3557;"><span data-count="13">13</span><span style="color:#5A7052;font-size:36px;">+</span></span>
+      <p style="margin:10px 0 0;font-size:13.5px;color:#4E5560;font-weight:500;">lat w sprzedaży i technologii</p>
+    </div>
+    <div data-reveal>
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:58px;line-height:1;color:#1C3557;"><span data-count="2">2</span><span style="color:#5A7052;font-size:36px;">×</span></span>
+      <p style="margin:10px 0 0;font-size:13.5px;color:#4E5560;font-weight:500;">awans w 1,5 roku (PORTA)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== O MNIE ===== -->
+<section id="o-mnie" data-screen-label="O mnie" style="padding:110px 0;">
+  <div style="max-width:1180px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:280px 1fr;gap:64px;align-items:start;">
+    <h2 data-reveal style="margin:0;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(34px,4vw,48px);letter-spacing:-0.01em;color:#1C3557;position:sticky;top:110px;">O mnie<span style="color:#5A7052;">.</span></h2>
+    <div>
+      <p data-reveal style="margin:0 0 22px;font-size:21px;line-height:1.55;font-weight:500;color:#14181D;">To jest dokładnie ta praca, którą lubię najbardziej: wziąć techniczny produkt i opowiedzieć go tak, żeby partner i klient końcowy chcieli słuchać.</p>
+      <p data-reveal style="margin:0 0 18px;font-size:16px;line-height:1.7;color:#4E5560;">Nauczyła mnie tego droga w PORTA KMI Poland — od doradcy i rzecznika klienta po Product Ownera systemów sprzedaży i produkcji okien oraz drzwi. Dziś w LET'S AUTOMATE prowadzę projekty IT end-to-end i doradzam w strategii automatyzacji: od pierwszej rozmowy, przez koncepcję i prototyp, po wdrożenie i rozliczenie.</p>
+      <p data-reveal style="margin:0 0 18px;font-size:16px;line-height:1.7;color:#4E5560;">Ta strona jest zresztą próbką sposobu pracy: zamiast wysłać PDF, zbudowałem odpowiedź na Wasze ogłoszenie — punkt po punkcie, z dowodami.</p>
+      <p data-reveal style="margin:0;font-size:16px;line-height:1.7;color:#4E5560;">Poza samą komunikacją produktową mam za sobą rolę Product Ownera i Project Managera — budowałem systemy sprzedaży i produkcji, uruchamiałem usługi od zera i prowadziłem projekty end-to-end. Jeśli rola może urosnąć w stronę własności produktu albo procesów, mam czym ją wypełnić.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEMO: TECHNIKA -> KORZYŚĆ ===== -->
+<section id="demo" data-screen-label="Demo technika-korzyść" style="background:#12233C;color:#F5F3EE;padding:100px 0;">
+  <div style="max-width:1180px;margin:0 auto;padding:0 40px;">
+    <p data-reveal style="margin:0 0 12px;font-weight:600;font-size:13px;letter-spacing:0.14em;color:#8FA98A;">DEMO NA ŻYWO</p>
+    <h2 data-reveal style="margin:0 0 16px;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(34px,4vw,48px);letter-spacing:-0.01em;">Technika → korzyść<span style="color:#9DBE96;">.</span></h2>
+    <p data-reveal style="margin:0 0 44px;font-size:16.5px;color:rgba(245,243,238,0.7);max-width:560px;">Kliknij parametr z karty produktu i zobacz, jak brzmi w rozmowie z klientem. Tak wygląda komunikacja produktowa w praktyce.</p>
+    <div data-reveal style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;">
+      <sc-for list="{{ demoTabs }}" as="tab" hint-placeholder-count="3">
+        <button onClick="{{ tab.onClick }}" style="cursor:pointer;font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:14px;padding:13px 22px;border-radius:100px;border:2px solid {{ tab.border }};background:{{ tab.bg }};color:{{ tab.color }};transition:background .2s ease,border-color .2s ease;">{{ tab.label }}</button>
+      </sc-for>
+    </div>
+    <div data-reveal style="display:grid;grid-template-columns:1fr 60px 1.3fr;gap:24px;align-items:center;">
+      <div style="background:rgba(245,243,238,0.06);border:1px solid rgba(245,243,238,0.15);border-radius:2px;padding:34px 30px;">
+        <span style="display:block;font-size:11px;font-weight:700;letter-spacing:0.12em;color:rgba(245,243,238,0.5);margin-bottom:14px;">PARAMETR Z KARTY PRODUKTU</span>
+        <span style="display:block;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(26px,3vw,38px);line-height:1.15;">{{ demoParam }}</span>
+        <span style="display:block;margin-top:10px;font-size:14px;color:rgba(245,243,238,0.6);">{{ demoParamDesc }}</span>
+      </div>
+      <div style="text-align:center;font-family:'Archivo',sans-serif;font-weight:900;font-size:34px;color:#9DBE96;">→</div>
+      <div style="background:#5A7052;border-radius:2px;padding:34px 30px;">
+        <span style="display:block;font-size:11px;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.65);margin-bottom:14px;">ARGUMENT, KTÓRY TRAFIA DO KLIENTA</span>
+        <span style="display:block;font-size:clamp(19px,2.2vw,25px);line-height:1.45;font-weight:600;color:#fff;">„{{ demoBenefit }}”</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DOPASOWANIE ===== -->
+<section id="dopasowanie" data-screen-label="Dopasowanie do ogłoszenia" style="padding:110px 0;">
+  <div style="max-width:1180px;margin:0 auto;padding:0 40px;">
+    <h2 data-reveal style="margin:0 0 14px;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(34px,4vw,48px);letter-spacing:-0.01em;color:#1C3557;">Wasze wymagania — moje odpowiedzi<span style="color:#5A7052;">.</span></h2>
+    <p data-reveal style="margin:0 0 30px;font-size:17px;color:#4E5560;">Prosto z ogłoszenia, punkt po punkcie. Kliknij grupę, żeby przejrzeć.</p>
+    <div data-reveal style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px;">
+      <sc-for list="{{ reqTabs }}" as="tab" hint-placeholder-count="3">
+        <button onClick="{{ tab.onClick }}" style="cursor:pointer;font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:14px;padding:13px 22px;border-radius:2px;border:2px solid #1C3557;background:{{ tab.bg }};color:{{ tab.color }};transition:background .2s ease,color .2s ease;">{{ tab.label }}</button>
+      </sc-for>
+    </div>
+    <div>
+      <sc-for list="{{ reqItems }}" as="req" hint-placeholder-count="3">
+        <div style="padding:30px 0;border-top:1px solid #DCD8CD;">
+          <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;max-width:820px;">
+            <span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#5A7052;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:3px;">✓</span>
+            <p style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#1C3557;line-height:1.4;">{{ req.ask }}</p>
+          </div>
+          <p style="margin:0 0 0 38px;font-size:16px;color:#4E5560;line-height:1.72;max-width:720px;">{{ req.ans }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PREZENTACJE I SZKOLENIA ===== -->
+<section id="szkolenia" data-screen-label="Prezentacje i szkolenia" style="background:#ECE9E1;padding:110px 0;">
+  <div style="max-width:1180px;margin:0 auto;padding:0 40px;">
+    <h2 data-reveal style="margin:0 0 14px;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(34px,4vw,48px);letter-spacing:-0.01em;color:#1C3557;">Prezentacje i szkolenia<span style="color:#5A7052;">.</span></h2>
+    <p data-reveal style="margin:0 0 48px;font-size:17px;color:#4E5560;max-width:620px;">Serce tej roli — i część pracy, którą lubię najbardziej. Szkolenie ludzi daje mi czystą satysfakcję, i to widać na sali.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
+      <div data-reveal style="background:#F5F3EE;border:1px solid #DCD8CD;border-radius:2px;padding:32px 28px;transition:transform .2s ease,box-shadow .2s ease;" style-hover="transform:translateY(-5px);box-shadow:0 14px 30px rgba(20,24,29,0.08);">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:38px;color:#5A7052;display:block;margin-bottom:18px;">01</span>
+        <h3 style="margin:0 0 10px;font-family:'Archivo',sans-serif;font-weight:900;font-size:18px;color:#1C3557;">Train the Trainer</h3>
+        <p style="margin:0;font-size:14.5px;color:#4E5560;line-height:1.6;">Certyfikat Akademii JA. Program szkoleniowy potrafię zaprojektować od zera — nie tylko wypełnić treścią.</p>
+      </div>
+      <div data-reveal style="background:#F5F3EE;border:1px solid #DCD8CD;border-radius:2px;padding:32px 28px;transition:transform .2s ease,box-shadow .2s ease;" style-hover="transform:translateY(-5px);box-shadow:0 14px 30px rgba(20,24,29,0.08);">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:38px;color:#5A7052;display:block;margin-bottom:18px;">02</span>
+        <h3 style="margin:0 0 10px;font-family:'Archivo',sans-serif;font-weight:900;font-size:18px;color:#1C3557;">Sala i online</h3>
+        <p style="margin:0;font-size:14.5px;color:#4E5560;line-height:1.6;">Prowadzę wdrożenia, szkolenia i spotkania w obu formatach — dla partnerów i zespołów wewnętrznych.</p>
+      </div>
+      <div data-reveal style="background:#F5F3EE;border:1px solid #DCD8CD;border-radius:2px;padding:32px 28px;transition:transform .2s ease,box-shadow .2s ease;" style-hover="transform:translateY(-5px);box-shadow:0 14px 30px rgba(20,24,29,0.08);">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:38px;color:#5A7052;display:block;margin-bottom:18px;">03</span>
+        <h3 style="margin:0 0 10px;font-family:'Archivo',sans-serif;font-weight:900;font-size:18px;color:#1C3557;">Koncepcje, prototypy, dema</h3>
+        <p style="margin:0;font-size:14.5px;color:#4E5560;line-height:1.6;">Współprowadzę spotkania przedsprzedażowe — moje prototypy i dema są merytorycznym rdzeniem prezentacji.</p>
+      </div>
+      <div data-reveal style="background:#F5F3EE;border:1px solid #DCD8CD;border-radius:2px;padding:32px 28px;transition:transform .2s ease,box-shadow .2s ease;" style-hover="transform:translateY(-5px);box-shadow:0 14px 30px rgba(20,24,29,0.08);">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:38px;color:#5A7052;display:block;margin-bottom:18px;">04</span>
+        <h3 style="margin:0 0 10px;font-family:'Archivo',sans-serif;font-weight:900;font-size:18px;color:#1C3557;">Drzwi znam od środka</h3>
+        <p style="margin:0;font-size:14.5px;color:#4E5560;line-height:1.6;">Praktyczna wiedza technologiczna o stolarce: praca z monterami, obsługa reklamacji i szkolenie w Akademii Dobrego Montażu PORTA.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DOŚWIADCZENIE ===== -->
+<section id="doswiadczenie" data-screen-label="Doświadczenie" style="padding:110px 0;">
+  <div style="max-width:1180px;margin:0 auto;padding:0 40px;">
+    <h2 data-reveal style="margin:0 0 48px;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(34px,4vw,48px);letter-spacing:-0.01em;color:#1C3557;">Doświadczenie<span style="color:#5A7052;">.</span></h2>
+
+    <!-- DOŚWIADCZENIE — oś czasu -->
+    <div id="expTimeline" style="position:relative;padding-left:46px;">
+      <div id="expTrack" style="position:absolute;left:17px;top:14px;bottom:14px;width:2px;background:#DCD8CD;"></div>
+      <div id="expFill" style="position:absolute;left:17px;top:14px;width:2px;height:0;background:#5A7052;transition:height .12s linear;"></div>
+    <!-- LET'S AUTOMATE (obecnie) -->
+    <article data-reveal style="border-top:2px solid #14181D;">
+      <button onClick="{{ toggleAcc1 }}" style="width:100%;display:grid;grid-template-columns:100px 1fr 40px;align-items:center;gap:16px;padding:30px 0;background:none;border:none;cursor:pointer;text-align:left;font-family:'Instrument Sans',sans-serif;transition:padding-left .2s ease;" style-hover="padding-left:10px;">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:48px;line-height:1;color:{{ acc1NumColor }};">01</span>
+        <span style="display:flex;flex-direction:column;gap:6px;">
+          <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;"><span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:23px;color:#1C3557;">LET'S AUTOMATE</span><span style="background:#E2DFD6;color:#4E5560;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:4px 10px;border-radius:100px;">OBECNIE</span></span>
+          <span style="font-size:14px;color:#4E5560;font-weight:500;">Project Manager · 03.2023 — obecnie</span>
+        </span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:26px;color:#1C3557;">{{ acc1Icon }}</span>
+      </button>
+      <sc-if value="{{ acc1Open }}" hint-placeholder-val="{{ false }}" data-acc1>
+        <div style="padding:0 0 40px 116px;max-width:780px;">
+          <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;">
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span><strong style="color:#14181D;">Projekt „niemożliwy", dostarczony w 100%:</strong> system scalający setki plików Excel w jedną strukturę ofertową — czas przygotowania dokumentu z 2–4 h do 3–5 minut. Na etapie sprzedaży klient uznawał go za nierealny.</li>
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span><strong style="color:#14181D;">Uratowany projekt na krawędzi straty:</strong> przejąłem realizację 4× przeszacowaną budżetowo; po reorganizacji i rekalkulacji dostarczona w terminie i w budżecie — z prognozowanej straty na plus.</li>
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Ponad 100 klientów, 40+ wdrożonych automatyzacji i systemów „na miarę" — każdy projekt od analizy i estymacji, przez negocjacje, po wdrożenie i rozliczenie.</li>
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Równolegle 10–15 projektów IT end-to-end (10–600 tys. zł za system), zespoły 2–7 osób, Agile/Waterfall — z odpowiedzialnością za budżet, ryzyko i harmonogram.</li>
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Współprowadzę spotkania przedsprzedażowe: koncepcje, prototypy i dema, które przekładają technologię na decyzje biznesowe; rozwijam sprzedaż u obecnych klientów (upselling, cross-selling).</li>
+          </ul>
+        </div>
+      </sc-if>
+    </article>
+
+    <!-- PORTA -->
+    <article data-reveal style="border-top:1px solid #DCD8CD;">
+      <button onClick="{{ toggleAcc0 }}" style="width:100%;display:grid;grid-template-columns:100px 1fr 40px;align-items:center;gap:16px;padding:30px 0;background:none;border:none;cursor:pointer;text-align:left;font-family:'Instrument Sans',sans-serif;transition:padding-left .2s ease;" style-hover="padding-left:10px;">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:48px;line-height:1;color:{{ acc0NumColor }};">02</span>
+        <span style="display:flex;flex-direction:column;gap:6px;">
+          <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;"><span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:23px;color:#1C3557;">PORTA KMI Poland</span><span style="background:#DEE5D6;color:#3d4f38;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:4px 10px;border-radius:100px;">STOLARKA OTWOROWA</span></span>
+          <span style="font-size:14px;color:#4E5560;font-weight:500;">Product Owner · Specjalista ds. sprzedaży · Rzecznik Klienta · 10.2020 — 03.2023</span>
+        </span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:26px;color:#1C3557;">{{ acc0Icon }}</span>
+      </button>
+      <sc-if value="{{ acc0Open }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:0 0 40px 116px;max-width:780px;">
+          <h4 style="margin:0 0 12px;font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;color:#14181D;">Product Owner <span style="font-family:'Instrument Sans',sans-serif;font-weight:500;font-size:13px;color:#8E9199;">05.2022 — 03.2023</span></h4>
+          <ul style="margin:0 0 24px;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;">
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Backlog i priorytety kluczowych systemów sprzedażowych PORTA — ORDERS (konfiguracja) i Extra/Intranet (zamówienia i produkcja) — narzędzi, z których codziennie korzysta cała sprzedaż stolarki.</li>
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Łączyłem dwa światy: potrzeby działów biznesowych przekładałem na zadania i priorytety dla zespołu deweloperskiego pracującego w SCRUM.</li>
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Prowadziłem jako Project Manager wdrożenia PORTA Measurements i systemu SSO; rozwijałem CRM firmy z zewnętrznym zespołem deweloperskim.</li>
+          </ul>
+          <h4 style="margin:0 0 12px;font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;color:#14181D;">Specjalista ds. sprzedaży + Rzecznik Klienta <span style="font-family:'Instrument Sans',sans-serif;font-weight:500;font-size:13px;color:#8E9199;">10.2020 — 04.2022</span></h4>
+          <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;">
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Wdrożyłem od zera nową, technologiczną usługę dla klienta indywidualnego (PORTA Measurements) — od koncepcji po działający serwis, wraz z promocją.</li>
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Współtworzyłem nowy dział obsługi klienta indywidualnego: zaprojektowałem procesy i standardy, według których zaczął pracować zespół.</li>
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Zbudowałem na nowo i prowadziłem rolę Rzecznika Klienta — trudne reklamacje „out of the box", zawsze skutecznie.</li>
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Ekspert przy wdrożeniu i promocji rozszerzonej usługi opieki door-to-door.</li>
+          </ul>
+        </div>
+      </sc-if>
+    </article>
+
+    <!-- SMK -->
+    <article data-reveal style="border-top:1px solid #DCD8CD;border-bottom:1px solid #DCD8CD;">
+      <button onClick="{{ toggleAcc2 }}" style="width:100%;display:grid;grid-template-columns:100px 1fr 40px;align-items:center;gap:16px;padding:30px 0;background:none;border:none;cursor:pointer;text-align:left;font-family:'Instrument Sans',sans-serif;transition:padding-left .2s ease;" style-hover="padding-left:10px;">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:48px;line-height:1;color:{{ acc2NumColor }};">03</span>
+        <span style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:23px;color:#1C3557;">SMK Technologie Informatyczne</span>
+          <span style="font-size:14px;color:#4E5560;font-weight:500;">Przedstawiciel handlowy · Asystent działu sprzedaży · 11.2013 — 09.2020</span>
+        </span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:26px;color:#1C3557;">{{ acc2Icon }}</span>
+      </button>
+      <sc-if value="{{ acc2Open }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:0 0 40px 116px;max-width:780px;">
+          <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;">
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Podwoiłem wolumen sprzedaży w dwa lata: +49% w 2018 i +38% w 2019 — konsekwentnie przekraczając cele sprzedażowe.</li>
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Pozyskałem strategicznych klientów B2B, współpracując blisko z globalnym producentem sprzętu IT; negocjowałem kontrakty na poziomie korporacyjnym.</li>
+            <li style="position:relative;padding-left:20px;color:#4E5560;font-size:15px;line-height:1.6;"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#5A7052;border-radius:50%;"></span>Wdrożyłem w firmie system CRM (Bitrix24).</li>
+          </ul>
+        </div>
+      </sc-if>
+    </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WARUNKI WSPÓŁPRACY ===== -->
+<section id="warunki" data-screen-label="Warunki współpracy" style="padding:110px 0;">
+  <div style="max-width:1180px;margin:0 auto;padding:0 40px;">
+    <h2 data-reveal style="margin:0 0 14px;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(34px,4vw,48px);letter-spacing:-0.01em;color:#1C3557;">Warunki współpracy<span style="color:#5A7052;">.</span></h2>
+    <p data-reveal style="margin:0 0 48px;font-size:18px;line-height:1.6;color:#4E5560;max-width:640px;">Jestem elastyczny co do formy — dopasuję się do tego, jak wolicie pracować. Zależy mi na roli i zakresie, nie na jednym konkretnym modelu umowy.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;">
+      <div data-reveal style="border:1px solid #DCD8CD;border-radius:2px;padding:36px 32px;background:#F5F3EE;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;" style-hover="transform:translateY(-5px);box-shadow:0 14px 30px rgba(20,24,29,0.08);border-color:#1C3557;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:#5A7052;display:block;margin-bottom:14px;">MODEL 1</span>
+        <h3 style="margin:0 0 12px;font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;color:#1C3557;">B2B — freelance / kontrakt</h3>
+        <p style="margin:0;font-size:15px;color:#4E5560;line-height:1.65;">Wolicie elastyczny model rozliczeniowy albo współpracę projektową? Pracuję też na B2B, freelance i w formule kontraktu — z tą samą odpowiedzialnością za wynik.</p>
+      </div>
+      <div data-reveal style="border:1px solid #DCD8CD;border-radius:2px;padding:36px 32px;background:#F5F3EE;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;" style-hover="transform:translateY(-5px);box-shadow:0 14px 30px rgba(20,24,29,0.08);border-color:#1C3557;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:#5A7052;display:block;margin-bottom:14px;">MODEL 2</span>
+        <h3 style="margin:0 0 12px;font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;color:#1C3557;">Etat — umowa o pracę</h3>
+        <p style="margin:0;font-size:15px;color:#4E5560;line-height:1.65;">Jeśli szukacie osoby na stałe, w zespole i w strukturze — jestem otwarty na etat i pełne zaangażowanie w rozwój produktu i procesów.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KOMPETENCJE ===== -->
+<section id="kompetencje" data-screen-label="Kompetencje" style="background:#ECE9E1;padding:110px 0;">
+  <div style="max-width:1180px;margin:0 auto;padding:0 40px;">
+    <h2 data-reveal style="margin:0 0 48px;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(34px,4vw,48px);letter-spacing:-0.01em;color:#1C3557;">Kompetencje &amp; wykształcenie<span style="color:#5A7052;">.</span></h2>
+    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:64px;">
+      <div>
+        <h3 data-reveal style="margin:0 0 22px;font-size:13px;font-weight:700;letter-spacing:0.1em;color:#5A7052;border-bottom:2px solid #5A7052;padding-bottom:10px;">CO WNOSZĘ</h3>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px;">
+          <li data-reveal style="font-size:15px;color:#4E5560;line-height:1.6;padding-left:18px;border-left:3px solid #DCD8CD;transition:padding-left .2s ease,border-color .2s ease;" style-hover="padding-left:24px;border-color:#1C3557;"><strong style="color:#14181D;">Zarządzanie projektami IT</strong> — 100+ klientów, projekty end-to-end w Agile/Waterfall, portfel ~10 równolegle.</li>
+          <li data-reveal style="font-size:15px;color:#4E5560;line-height:1.6;padding-left:18px;border-left:3px solid #DCD8CD;transition:padding-left .2s ease,border-color .2s ease;" style-hover="padding-left:24px;border-color:#1C3557;"><strong style="color:#14181D;">Sprzedaż B2B</strong> — negocjacje kontraktów, upselling i cross-selling, rozwój relacji.</li>
+          <li data-reveal style="font-size:15px;color:#4E5560;line-height:1.6;padding-left:18px;border-left:3px solid #DCD8CD;transition:padding-left .2s ease,border-color .2s ease;" style-hover="padding-left:24px;border-color:#1C3557;"><strong style="color:#14181D;">Systemy &amp; CRM</strong> — wdrożenia i rozwój (Bitrix24, systemy zamówień i konfiguracji), strategie automatyzacji.</li>
+          <li data-reveal style="font-size:15px;color:#4E5560;line-height:1.6;padding-left:18px;border-left:3px solid #DCD8CD;transition:padding-left .2s ease,border-color .2s ease;" style-hover="padding-left:24px;border-color:#1C3557;"><strong style="color:#14181D;">AI &amp; nowe technologie</strong> — narzędzia AI w codziennej pracy; stack projektowy n8n, Next.js, Convex, Supabase, Vercel; Jira/ClickUp.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-reveal style="margin:0 0 22px;font-size:13px;font-weight:700;letter-spacing:0.1em;color:#8E9199;border-bottom:2px solid #1C3557;padding-bottom:10px;">WYKSZTAŁCENIE</h3>
+        <div data-reveal style="display:grid;grid-template-columns:110px 1fr;gap:14px;padding:20px 0;border-bottom:1px solid #DCD8CD;">
+          <span style="font-size:13px;font-weight:600;color:#8E9199;">2014 — 2016</span>
+          <div>
+            <h4 style="margin:0 0 4px;font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;">SGH Warsaw School of Economics</h4>
+            <p style="margin:0;color:#4E5560;font-size:14px;">Master of Management</p>
+          </div>
+        </div>
+        <div data-reveal style="display:grid;grid-template-columns:110px 1fr;gap:14px;padding:20px 0;">
+          <span style="font-size:13px;font-weight:600;color:#8E9199;">2010 — 2013</span>
+          <div>
+            <h4 style="margin:0 0 4px;font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;">Uniwersytet Gdański</h4>
+            <p style="margin:0;color:#4E5560;font-size:14px;">Międzynarodowe stosunki gospodarcze (licencjat)</p>
+          </div>
+        </div>
+        <div data-reveal style="margin-top:28px;background:#F5F3EE;border:1px solid #DCD8CD;border-radius:2px;padding:26px 24px;">
+          <span style="display:block;font-size:11px;font-weight:700;letter-spacing:0.12em;color:#5A7052;margin-bottom:10px;">CERTYFIKAT</span>
+          <h4 style="margin:0 0 6px;font-family:'Archivo',sans-serif;font-weight:900;font-size:17px;color:#1C3557;">Train the Trainer</h4>
+          <p style="margin:0;color:#4E5560;font-size:14px;">Akademia JA — projektowanie i prowadzenie szkoleń dla zespołów i partnerów.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KONTAKT ===== -->
+<section id="kontakt" data-screen-label="Kontakt" style="background:#12233C;color:#F5F3EE;padding:110px 0 0;">
+  <div style="max-width:820px;margin:0 auto;padding:0 40px;text-align:center;">
+    <h2 data-reveal style="margin:0 0 20px;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(48px,7vw,84px);letter-spacing:-0.01em;">Porozmawiajmy<span style="color:#9DBE96;">.</span></h2>
+    <p data-reveal style="margin:0 auto 48px;font-size:17px;line-height:1.65;color:rgba(245,243,238,0.72);max-width:540px;">Najwięcej powiem głosem — tak jak na prezentacji. Jeden telefon i sprawdzicie, czy potrafię opowiadać o produkcie tak, żeby chciało się słuchać.</p>
+    <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:rgba(245,243,238,0.15);border:1px solid rgba(245,243,238,0.15);margin-bottom:48px;">
+      <a href="mailto:alek.zaboklicki@gmail.com" style="text-decoration:none;color:inherit;background:#12233C;padding:26px 16px;display:flex;flex-direction:column;gap:8px;transition:background .2s ease;" style-hover="background:#1C3557;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:#8FA98A;">E-MAIL</span>
+        <span style="font-size:14.5px;font-weight:500;word-break:normal;overflow-wrap:normal;">alek.zaboklicki@<wbr>gmail.com</span>
+      </a>
+      <a href="tel:+48514633375" style="text-decoration:none;color:inherit;background:#12233C;padding:26px 16px;display:flex;flex-direction:column;gap:8px;transition:background .2s ease;" style-hover="background:#1C3557;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:#8FA98A;">TELEFON</span>
+        <span style="font-size:14.5px;font-weight:500;">+48 514 633 375</span>
+      </a>
+      <a href="https://www.linkedin.com/in/aleksander-żaboklicki" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;background:#12233C;padding:26px 16px;display:flex;flex-direction:column;gap:8px;transition:background .2s ease;" style-hover="background:#1C3557;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:#8FA98A;">LINKEDIN</span>
+        <span style="font-size:14.5px;font-weight:500;">/in/aleksander-żaboklicki</span>
+      </a>
+      <div style="background:#12233C;padding:26px 16px;display:flex;flex-direction:column;gap:8px;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:#8FA98A;">LOKALIZACJA</span>
+        <span style="font-size:14.5px;font-weight:500;">Kosakowo / Gdynia, PL</span>
+      </div>
+    </div>
+    <div data-reveal style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:80px;">
+      <button onClick="{{ callAction }}" style="cursor:pointer;font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:15px;padding:18px 36px;background:#5A7052;color:#fff;border:2px solid #5A7052;border-radius:2px;transition:background .2s ease;" style-hover="background:#6d8563;">{{ callLabel }}</button>
+      <a href="assets/Aleksander_Zaboklicki_CV.pdf" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;font-weight:600;font-size:15px;padding:18px 36px;background:transparent;color:#F5F3EE;border:2px solid rgba(245,243,238,0.4);border-radius:2px;transition:border-color .2s ease;" style-hover="border-color:#F5F3EE;">Pobierz CV (PDF)</a>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(245,243,238,0.15);padding:24px 40px 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;max-width:1320px;margin:0 auto;font-size:12px;color:rgba(245,243,238,0.5);">
+    <span>© 2026 Aleksander Żaboklicki</span>
+    <span>Zgoda na przetwarzanie danych osobowych zgodnie z RODO — pełna treść w CV PDF.</span>
+  </footer>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    hero: 'A',
+    wordIdx: 0,
+    demoIdx: 0,
+    reqTab: 0,
+    acc0Open: false,
+    acc1Open: false,
+    acc2Open: false,
+    callRevealed: false,
+  };
+
+  words = ['cieplejszy salon', 'niższy rachunek', 'cisza w sypialni', 'spokojna głowa'];
+
+  demos = [
+    { label: 'Uw = 0,8 W/m²K', param: 'Uw = 0,8 W/m²K', desc: 'współczynnik przenikania ciepła okna', benefit: 'Cieplejszy salon zimą i wyraźnie niższy rachunek za ogrzewanie — okno, które zarabia na siebie każdej zimy.' },
+    { label: 'Rw = 45 dB', param: 'Rw = 45 dB', desc: 'izolacyjność akustyczna', benefit: 'Cisza w sypialni nawet przy ruchliwej ulicy. Lepszy sen — bez dopłaty do metrażu.' },
+    { label: 'Klasa RC2', param: 'Klasa RC2', desc: 'odporność na włamanie', benefit: 'Spokojna głowa na wakacjach: okno, które realnie utrudnia włamanie, a nie tylko obiecuje.' },
+    { label: 'g = 50%', param: 'g = 50%', desc: 'przepuszczalność energii słonecznej', benefit: 'Darmowe ciepło ze słońca zimą — i salon, który nie zamienia się w szklarnię latem.' },
+  ];
+
+  reqGroups = [
+    { label: 'Zakres zadań', items: [
+      { ask: 'Wsparcie merytoryczne — materiały produktowe, prezentacje i programy szkoleniowe.', ans: 'W PORTA budowałem procesy i standardy od zera; tworzę koncepcje, prototypy i dema. Jako Train the Trainer program szkoleniowy potrafię zaprojektować, nie tylko wypełnić treścią.' },
+      { ask: 'Komunikacja produktowa — parametry techniczne na język korzyści biznesowych.', ans: 'To moja specjalność. Współczynnik przenikania nie sprzedaje okna — sprzedaje je cieplejszy salon i niższy rachunek. Zamieniam parametr w argument, który trafia do klienta.' },
+      { ask: 'Prezentacje i spotkania produktowe oraz szkolenia — stacjonarnie i online.', ans: 'Prowadzę wdrożenia, szkolenia i spotkania przedsprzedażowe na sali i online — i lubię to robić. Na żywo przekładam produkt na decyzję biznesową klienta.' },
+    ]},
+    { label: 'Czego oczekujecie', items: [
+      { ask: 'Doświadczenie w branży budowlanej, mile widziana stolarka otworowa.', ans: 'Stolarkę znam z każdej strony łańcucha: producent → dealer → APS → monter → klient. Doradca, Rzecznik Klienta i Product Owner systemów produkcji okien i drzwi w PORTA KMI Poland.' },
+      { ask: 'Zacięcie produktowe — przekładanie wiedzy technicznej na argumenty biznesowe.', ans: 'Byłem Product Ownerem realnych systemów sprzedaży (ORDERS, Extra/Intranet). Myślę produktem: od potrzeby, przez prototyp, po argument, który sprzedaje.' },
+      { ask: 'Angielski w biznesie — swobodne prezentacje i spotkania.', ans: 'Poziom biznesowy — swobodnie prowadzę prezentacje i spotkania, także z globalnymi partnerami, dla których angielski był językiem roboczym.' },
+      { ask: 'Komunikatywność — swoboda w wystąpieniach i budowaniu relacji.', ans: 'Rola Rzecznika Klienta i sprzedaż B2B to codzienne relacje, także w trudnych sytuacjach. Kontakt z ludźmi lubię najbardziej.' },
+    ]},
+    { label: 'Mile widziane', items: [
+      { ask: 'Doświadczenie w marketingu produktowym lub sprzedaży technicznej.', ans: 'Uruchomiłem usługę PORTA Measurements od zera — od koncepcji po serwis i promocję. W sprzedaży technicznej IT podwoiłem wolumen w dwa lata (+49% i +38%).' },
+      { ask: 'Proaktywność i samodzielność w działaniu.', ans: 'Uratowałem projekt na krawędzi straty i dostarczyłem taki, który klient uznawał za niemożliwy. Branie odpowiedzialności to mój domyślny tryb.' },
+    ]},
+  ];
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const el = document.getElementById('scrollProgress');
+      if (!el) return;
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      el.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+
+      const track = document.getElementById('expTrack');
+      const fill = document.getElementById('expFill');
+      if (track && fill) {
+        const r = track.getBoundingClientRect();
+        const start = window.innerHeight * 0.78;
+        const p = Math.min(1, Math.max(0, (start - r.top) / (r.height || 1)));
+        fill.style.height = (p * track.offsetHeight) + 'px';
+      }
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+
+    this.initEffects();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._io) this._io.disconnect();
+    if (this._cio) this._cio.disconnect();
+  }
+
+  initEffects() {
+    // Scroll reveal
+    if (!this._io && 'IntersectionObserver' in window) {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.translate = '0 0';
+            this._io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+    }
+    document.querySelectorAll('[data-reveal]:not([data-rv])').forEach(el => {
+      el.setAttribute('data-rv', '1');
+      if (!this._io) return;
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.92) return; // already visible — don't hide
+      el.style.opacity = '0';
+      el.style.translate = '0 22px';
+      el.style.transition = 'opacity .65s ease, translate .65s ease';
+      this._io.observe(el);
+    });
+
+    // Counters
+    if (!this._cio && 'IntersectionObserver' in window) {
+      this._cio = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const target = parseInt(el.dataset.count, 10);
+          const t0 = performance.now();
+          const tick = (t) => {
+            const p = Math.min((t - t0) / 1000, 1);
+            el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          this._cio.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+    }
+    document.querySelectorAll('[data-count]:not([data-cv])').forEach(el => {
+      el.setAttribute('data-cv', '1');
+      if (this._cio) this._cio.observe(el);
+    });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const demo = this.demos[s.demoIdx];
+
+    return {
+      demoTabs: this.demos.map((d, i) => ({
+        label: d.label,
+        onClick: () => this.setState({ demoIdx: i }),
+        bg: i === s.demoIdx ? '#F5F3EE' : 'transparent',
+        color: i === s.demoIdx ? '#12233C' : 'rgba(245,243,238,0.8)',
+        border: i === s.demoIdx ? '#F5F3EE' : 'rgba(245,243,238,0.35)',
+      })),
+      demoParam: demo.param,
+      demoParamDesc: demo.desc,
+      demoBenefit: demo.benefit,
+
+      reqTabs: this.reqGroups.map((g, i) => ({
+        label: g.label,
+        onClick: () => this.setState({ reqTab: i }),
+        bg: i === s.reqTab ? '#1C3557' : 'transparent',
+        color: i === s.reqTab ? '#fff' : '#1C3557',
+      })),
+      reqItems: this.reqGroups[s.reqTab].items,
+
+      acc0Open: s.acc0Open,
+      acc1Open: s.acc1Open,
+      acc2Open: s.acc2Open,
+      toggleAcc0: () => this.setState({ acc0Open: !s.acc0Open }),
+      toggleAcc1: () => this.setState({ acc1Open: !s.acc1Open }),
+      toggleAcc2: () => this.setState({ acc2Open: !s.acc2Open }),
+      acc0Icon: s.acc0Open ? '−' : '+',
+      acc1Icon: s.acc1Open ? '−' : '+',
+      acc2Icon: s.acc2Open ? '−' : '+',
+      acc0NumColor: s.acc0Open ? '#5A7052' : '#E2DFD6',
+      acc1NumColor: s.acc1Open ? '#5A7052' : '#E2DFD6',
+      acc2NumColor: s.acc2Open ? '#5A7052' : '#E2DFD6',
+
+      callLabel: s.callRevealed ? '+48 514 633 375' : 'Zadzwoń',
+      callAction: () => {
+        const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+        if (isMobile || s.callRevealed) { window.location.href = 'tel:+48514633375'; return; }
+        this.setState({ callRevealed: true });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
